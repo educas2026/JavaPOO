@@ -1,7 +1,6 @@
-package org.ch25.util.banco;
+package org.ch25.util.mibanco;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
@@ -14,7 +13,12 @@ public abstract class Cuenta implements Imprimible{
 	private int numeroCuenta; 
 	private String numeroCliente;
 	private Date fechaApertura;
-	private String nombreCliente;
+
+	public Cuenta(String nomCli) {
+		this.nomCli = nomCli;
+	}
+
+	private String nomCli;
     /**
      * 
      * @param saldo double - Saldo inicial de la cuenta
@@ -23,7 +27,7 @@ public abstract class Cuenta implements Imprimible{
      * @param nombreBanco String - Nombre del banco 
     */
 	
-	public Cuenta(double saldo, String numeroCliente, Date fechaApertura, 
+	public Cuenta(double saldo, String numeroCliente, Date fechaApertura,
 													String nombreCliente) {
 	    this.saldo = saldo;
 	    Cuenta.consecutivo++;
@@ -31,10 +35,15 @@ public abstract class Cuenta implements Imprimible{
 	    this.setNombreCliente(nombreCliente);
 		this.numeroCliente = numeroCliente;
 		if (numeroCliente.equals("0")){ //Se genera un número de cliente aleatorio
-			this.numeroCliente =Integer.toString(Math.abs(new Random().nextInt()));
+			this.numeroCliente =Integer.toString(getAbs());
 	    }//if numCliente.equals
 		this.fechaApertura = fechaApertura;
 	}//constructor
+
+	private static int getAbs() {
+		return Math.abs(new Random().nextInt());
+	}
+
 	public Cuenta(double saldo) {
 		this.saldo=saldo;
 	}//constructor
@@ -65,21 +74,20 @@ public abstract class Cuenta implements Imprimible{
 		return format.format(fechaApertura);
 	}//getFechaApertura
 
-	protected String getNombreCliente() {
-		return nombreCliente;
-	} //getNombreCliente
-
-	protected void setNombreCliente(String nombreCliente) {
-		this.nombreCliente = nombreCliente.toUpperCase();
-	}//setNombreCliente
-
 	public String toString() {
 		return "Saldo=" + saldo + ", Número de Cuenta=" + getNumeroCuenta()
 				+ ", Número del Cliente=" + getNumeroCliente()
 				+ ", Fecha de Apertura=" + getFechaApertura()
 				+ ", Nombre del Cliente=" + getNombreCliente();
 	}//toString
- 	
+
+	public String getNomCli() {
+		return nomCli;
+	}
+
+	public void setNomCli(String nomCli) {
+		this.nomCli = nomCli;
+	}
 }//class
 
 
