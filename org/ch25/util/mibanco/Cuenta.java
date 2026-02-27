@@ -6,6 +6,11 @@ import java.util.Random;
 
 import org.ch25.util.Imprimible;
 
+/**
+ * @author javier
+ *
+ */
+
 public abstract class Cuenta implements Imprimible{
 	//Los números de cuenta del banco iniciarán después de 1000
 	private static int consecutivo=1000; 
@@ -21,10 +26,10 @@ public abstract class Cuenta implements Imprimible{
 	private String nomCli;
     /**
      * 
-     * @param saldo double - Saldo inicial de la cuenta
-     * @param numeroCliente String  - Número del cliente, si se establece en 0 se genera uno aleatorio 
+     * @param saldo (double) - Saldo inicial de la cuenta
+     * @param numeroCliente (String)  - Número del cliente, si se establece en 0 se genera uno aleatorio
      * @param fechaApertura  java.util.Date - Fecha de apertura de la cuenta
-     * @param nombreBanco String - Nombre del banco 
+     * @param nombreBanco (String) - Nombre del banco
     */
 	
 	public Cuenta(double saldo, String numeroCliente, Date fechaApertura,
@@ -40,6 +45,10 @@ public abstract class Cuenta implements Imprimible{
 		this.fechaApertura = fechaApertura;
 	}//constructor
 
+	/**
+	 * Metodo getAbs que devuelve un valor absoluto
+	 * @return (int) valor absoluto
+	 */
 	private static int getAbs() {
 		return Math.abs(new Random().nextInt());
 	}
